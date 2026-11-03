@@ -415,11 +415,13 @@ function tryInitLibrary(){
   initAttempts++;
   if(window.lessonData && window.lessonData.length > 0){
     initLibrary();
+    openDeckFromQuery();
   } else if(initAttempts < 50){
     setTimeout(tryInitLibrary, 200);
   } else {
     console.warn('Data load timeout, rendering with available data');
     initLibrary();
+    openDeckFromQuery();
   }
 }
 window.tryInitLibrary = tryInitLibrary;
@@ -633,6 +635,27 @@ window.openDeck=function(catName,topic){
   hideAnswers();
   document.getElementById('deckView').classList.add('open');
   renderSlide();
+};
+
+window.openDeckFromQuery=function(){
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var slug = params.get('deck') || params.get('topic') || params.get('d');
+    if(!slug) return;
+    slug = slug.toLowerCase().trim();
+    var data = window.lessonData || lessonData || [];
+    for(var i=0;i<data.length;i++){
+      var cat=data[i];
+      for(var j=0;j<cat.topics.length;j++){
+        var t=cat.topics[j];
+        if((t.slug||'').toLowerCase() === slug){
+          setTimeout(function(c,topic){ openDeck(c,topic); }, 300, cat.category, t);
+          return;
+        }
+      }
+    }
+    console.warn('Deck not found for slug:', slug);
+  } catch(e){ console.error(e); }
 };
 
 window.closeDeck=function(){
