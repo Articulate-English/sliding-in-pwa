@@ -833,7 +833,8 @@ function renderSlide(){
   document.documentElement.style.setProperty('--bg3', theme.panel);
 
   // Use a single focused cover image per topic (avoid rotating duplicates)
-  var localImg = mappingLookup[slug] || (window.localImageMap[slug] && window.localImageMap[slug]['0']);
+  var localImg = (window.localImageMap && window.localImageMap[slug] && window.localImageMap[slug]['0']) || mappingLookup[slug];
+  if(!localImg){ console.warn('No image for slug', slug); }
   var imgUrl = localImg || getQuestionImage(q.original, slug, currentIndex);
   document.getElementById('slideBgImg').src = imgUrl;
   document.getElementById('slideBgImg').alt = currentTopic;
