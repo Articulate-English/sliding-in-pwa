@@ -831,8 +831,8 @@ function renderSlide(){
   document.documentElement.style.setProperty('--bg2', theme.bg);
   document.documentElement.style.setProperty('--bg3', theme.panel);
 
-  // Use local image if available, otherwise fallback to Pollinations
-  var localImg = (window.localImageMap[slug] && window.localImageMap[slug][String(currentIndex)]);
+  // Use a single focused cover image per topic (avoid rotating duplicates)
+  var localImg = mappingLookup[slug] || (window.localImageMap[slug] && window.localImageMap[slug]['0']);
   var imgUrl = localImg || getQuestionImage(q.original, slug, currentIndex);
   document.getElementById('slideBgImg').src = imgUrl;
   document.getElementById('slideBgImg').alt = currentTopic;
