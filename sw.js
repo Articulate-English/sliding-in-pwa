@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sliding-in-pwa-v4';
+const CACHE_NAME = 'sliding-in-pwa-v5';
 const APP_SHELL = [
   './',
   './index.html',
