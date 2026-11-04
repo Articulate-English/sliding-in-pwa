@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sliding In — Single Deck Links</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#08090a;color:#f7f8f8;padding:24px;max-width:900px;margin:0 auto}
+h1{font-size:1.6rem;margin-bottom:8px}
+p{color:#8a8f98;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+a.card{display:block;padding:12px 14px;border:1px solid rgba(255,255,255,.08);border-radius:8px;text-decoration:none;color:#f7f8f8;background:rgba(255,255,255,.02);transition:all .15s}
+a.card:hover{border-color:#5e6ad2;background:rgba(94,106,210,.08)}
+.title{font-weight:600;font-size:.95rem;margin-bottom:2px}
+.slug{font-family:monospace;font-size:.7rem;color:#8a8f98}
+</style>
+</head>
+<body>
+<h1>Sliding In — Single Deck Links</h1>
+<p>Click a deck to open it directly. Share the URL with students.</p>
+<div class="grid" id="grid"></div>
+<script>
+var base='https://articulate-english.github.io/sliding-in-pwa/?deck=';
+var decks=[
+["airportsflying","Airports and Flying"],
+["carsdriving","Cars and Driving"],
+["conversation","Conversation"],
+["cellphones","Cell Phones"],
+["socialnetworksmessaging","Social Networks and Messaging"],
+["introductions","Introductions"],
+["doyoulike","Do You Like...?"],
+["doyouprefer","Do You Prefer...?"],
+["advice","Advice"],
+["truthhonesty","Truth and Honesty"],
+["okornotok","OK or Not OK?"],
+["risksdanger","Risks and Danger"],
+["whatwouldyoudo","What Would You Do...?"],
+["wouldyouever","Would You Ever...?"],
+["haveyouever","Have You Ever...?"],
+["whatsthebestage","What's The Best Age To...?"],
+["whatsthebestway","What's The Best Way To...?"],
+["whattime","What Time...?"],
+["howmany","How Many...?"],
+["howoften","How Often Do You...?"],
+["howspecialisit","How Special Is It...?"],
+["where","Where...?"],
+["who","Who...?"],
+["whodoyouusuallygoto","Who Do You Usually Go To...?"],
+["advantagesdisadvantages","Advantages and Disadvantages"],
+["annoyingthings","Annoying Things"]
+];
+var g=document.getElementById('grid');
+decks.forEach(function(d){
+  var a=document.createElement('a');
+  a.className='card';
+  a.href=base+d[0];
+  a.target='_blank';
+  a.innerHTML='<div class="title">'+d[1]+'</div><div class="slug">'+d[0]+'</div>';
+  g.appendChild(a);
+});
+</script>
+</body>
+</html>
