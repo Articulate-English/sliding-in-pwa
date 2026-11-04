@@ -16,6 +16,23 @@ a.card:hover{border-color:#5e6ad2;background:rgba(94,106,210,.08)}
 </style>
 </head>
 <body>
+<div id="gate" style="position:fixed;inset:0;z-index:999;background:#08090a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
+  <h2 style="margin:0">Private Access</h2>
+  <input id="gatePw" type="password" placeholder="Password" style="padding:10px;border-radius:6px;border:1px solid #333;background:#111;color:#fff;font-size:1rem">
+  <button onclick="unlock()" style="padding:10px 20px;border-radius:6px;background:#5e6ad2;color:#fff;border:none;cursor:pointer;font-weight:600">Enter</button>
+  <div id="gateErr" style="color:#f87171;font-size:.85rem"></div>
+</div>
+<script>
+var GATE_HASH='69e151c82f097246eb188e3d75dac1d725fbfaa82df179adff60d857ec97a03b';
+async function sha256(s){const b=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+async function unlock(){
+  var pw=document.getElementById('gatePw').value;
+  var h=await sha256(pw);
+  if(h===GATE_HASH){sessionStorage.setItem('si_unlocked','1');document.getElementById('gate').style.display='none';}
+  else{document.getElementById('gateErr').textContent='Wrong password';}
+}
+if(sessionStorage.getItem('si_unlocked')==='1'){document.addEventListener('DOMContentLoaded',function(){var g=document.getElementById('gate');if(g)g.style.display='none';});}
+</script>
 <h1>Sliding In — Single Deck Links</h1>
 <p>Click a deck to open it directly. Share the URL with students.</p>
 <div class="grid" id="grid"></div>
