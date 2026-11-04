@@ -594,30 +594,7 @@ var coverImageMap = {
   "wouldyouever": "Sliding In Images/wouldyouever_0.jpg",
   "yourneighbourhood": "Sliding In Images/yourneighbourhood_0.jpg",
 };
-// Populate mappingLookup from cover images
-Object.keys(coverImageMap).forEach(function(slug){
-  mappingLookup[slug] = coverImageMap[slug];
-});
-
-for(var i=0;i<lessonData.length;i++){
-  var cat=lessonData[i];
-  for(var j=0;j<cat.topics.length;j++){
-    var t=cat.topics[j];
-    var card=document.createElement('a');
-    card.href='#';
-    card.className='lesson-card';
-    card.onclick=function(c,t){return function(e){e.preventDefault();openDeck(c,t);};}(cat.category,t);
-    
-    var imgSrc = mappingLookup[t.slug] || '';
-    var imgHtml = imgSrc 
-      ? '<div class="lesson-card-img-container"><img class="lesson-card-img" src="'+imgSrc+'" alt=""></div>' 
-      : '<div class="lesson-card-img-container"><div class="lesson-card-img placeholder" style="background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:1rem">'+t.slug+'</div></div>';
-
-          card.innerHTML = imgHtml + '<div class="lesson-card-content"><div class="lesson-card-body"><div class="lesson-cat">'+cat.category+'</div><h3>'+t.title.replace(/ \\(\\d+ questions?\\)$/,'')+'</h3><div class="lesson-count">'+t.questions.length+' questions</div></div></div>';
-    grid.appendChild(card);
-  }
-}
-
+// (Card rendering handled by initLibrary above)
 window.openDeck=function(catName,topic){
   currentCat=catName;
   currentTopic=topic.title;
