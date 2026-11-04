@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Project Dashboard — Sliding In</title>
+<style>
+:root{--bg:#08090a;--bg2:#0f1011;--card:#141516;--border:rgba(255,255,255,.08);--text:#f7f8f8;--muted:#8a8f98;--accent:#5e6ad2;--accent-hover:#7170ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+header{padding:24px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+h1{font-size:1.6rem;font-weight:510}h1 span{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;padding:24px 32px 40px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .15s;text-decoration:none;color:inherit;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card .name{font-weight:600;font-size:1rem;margin-bottom:4px}
+.card .cat{font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.card .desc{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.card .links{display:flex;gap:8px;flex-wrap:wrap}
+.card .links a{font-size:.75rem;color:var(--accent);text-decoration:none;padding:4px 10px;border:1px solid var(--border);border-radius:6px}
+.card .links a:hover{background:var(--bg2)}
+</style>
+</head>
+<body>
+<header><h1>Project <span>Dashboard</span></h1></header>
+<div class="grid">
+  <a class="card" href="https://articulate-english.github.io/sliding-in-4/">
+    <div class="cat">Public (Paygate)</div>
+    <div class="name">Sliding In 4 — Public</div>
+    <div class="desc">4 free topics + paygate. For store listing.</div>
+    <div class="links"><span>Open</span></div>
+  </a>
+  <a class="card" href="links.html">
+    <div class="cat">Private (Students)</div>
+    <div class="name">Sliding In — Student Links</div>
+    <div class="desc">All 26 decks, no paygate, password-gated.</div>
+    <div class="links"><span>Open</span></div>
+  </a>
+  <a class="card" href="https://articulate-english.github.io/sliding-in/">
+    <div class="cat">Legacy</div>
+    <div class="name">Sliding In (Original)</div>
+    <div class="desc">Original published version.</div>
+    <div class="links"><span>Open</span></div>
+  </a>
+</div>
+</body>
+</html>
