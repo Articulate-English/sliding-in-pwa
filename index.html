@@ -378,7 +378,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 
 <div class="vocab-tooltip" id="vocabTooltip"><span class="vt-word" id="vtWord"></span><span id="vtDef"></span></div>
 
-<script src="sliding-in-image-map.js"></script>
+<script src="sliding-in-image-map.js?v=5"></script>
 <script src="lesson-data.js"></script>
 <script>
 var lessonData = window.lessonData || [];
@@ -832,9 +832,10 @@ function renderSlide(){
   document.documentElement.style.setProperty('--bg2', theme.bg);
   document.documentElement.style.setProperty('--bg3', theme.panel);
 
-  // Use a single focused cover image per topic (avoid rotating duplicates)
-  var localImg = (window.localImageMap && window.localImageMap[slug] && window.localImageMap[slug]['0']) || mappingLookup[slug];
-  if(!localImg){ console.warn('No image for slug', slug); }
+  // Rotate through the topic's image pool so each slide gets a different image
+  var pool = (window.localImageMap && window.localImageMap[slug]) || {};
+  var idx = currentIndex % Math.max(1, Object.keys(pool).length || 1);
+  var localImg = pool[String(idx)] || pool['0'] || mappingLookup[slug];
   var imgUrl = localImg || getQuestionImage(q.original, slug, currentIndex);
   document.getElementById('slideBgImg').src = imgUrl;
   document.getElementById('slideBgImg').alt = currentTopic;
